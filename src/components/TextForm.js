@@ -5,6 +5,7 @@ export default function TextForm(props) {
     // console.log("Uppercase was clicked " + text);
     let newText = text.toUpperCase();
     setText(newText);
+    props.showalert("converted to Uppercase", "success");
   };
   const handleOnChange = (event) => {
     // console.log("On change");
@@ -13,19 +14,23 @@ export default function TextForm(props) {
   const handleLpClick = () => {
     let newText = text.toLowerCase();
     setText(newText);
+    props.showalert("converted to Lowercase", "success");
   };
   const handleClear = () => {
     let newText = " ";
     setText(newText);
+    props.showalert("screen cleared", "success");
   };
   const handleCopy = () => {
     var text = document.getElementById("myBox");
     text.select();
     navigator.clipboard.writeText(text.value);
+    props.showalert("Copied successfully", "success");
   };
   const handleExtraSpaces = () => {
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
+    props.showalert("removed whitespaces", "success");
   };
   const [text, setText] = useState("Enter text here");
   //   Wrong way to change the state: text="new text"
@@ -43,7 +48,7 @@ export default function TextForm(props) {
           <textarea
             className="form-control"
             style={{
-              backgroundcolour: props.mode === "dark" ? "Grey" : "white",
+              backgroundColor: props.mode === "dark" ? "Grey" : "white",
               color: props.mode === "dark" ? "white" : "#151B54",
             }}
             id="myBox"
