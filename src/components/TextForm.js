@@ -14,6 +14,10 @@ export default function TextForm(props) {
     let newText = text.toLowerCase();
     setText(newText);
   };
+  const handleClear = () => {
+    let newText = " ";
+    setText(newText);
+  };
   const [text, setText] = useState("Enter text here");
   //   Wrong way to change the state: text="new text"
   // correct way
@@ -32,11 +36,14 @@ export default function TextForm(props) {
             onChange={handleOnChange}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
           Convert to uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLpClick}>
+        <button className="btn btn-primary mx-1" onClick={handleLpClick}>
           Convert to lowercase
+        </button>
+        <button className="btn btn-primary mx-1" onClick={handleClear}>
+          Clear Text
         </button>
       </div>
       <div className="container my-3">
