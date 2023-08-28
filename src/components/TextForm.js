@@ -34,11 +34,18 @@ export default function TextForm(props) {
 
   return (
     <>
-      <div className="container">
+      <div
+        className="container"
+        style={{ color: props.mode === "dark" ? "white" : "#151B54" }}
+      >
         <h1>{props.heading}</h1>
         <div className="mb-3">
           <textarea
             className="form-control"
+            style={{
+              backgroundcolour: props.mode === "dark" ? "Grey" : "white",
+              color: props.mode === "dark" ? "white" : "#151B54",
+            }}
             id="myBox"
             rows="8"
             value={text}
@@ -61,14 +68,17 @@ export default function TextForm(props) {
           Remove extra spaces
         </button>
       </div>
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "dark" ? "white" : "#151B54" }}
+      >
         <h1>Your text summary</h1>
         <p>
           {text.split(" ").length} words , {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} minutes</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0 ? text : "Enter something to preview it"}</p>
       </div>
     </>
   );
