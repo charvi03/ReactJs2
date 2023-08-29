@@ -4,6 +4,7 @@ import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
@@ -16,7 +17,7 @@ function App() {
   };
   //whther dark mode is enabled or not
   const toggleMode = () => {
-    if (mode == "light") {
+    if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "#151B54";
       showalert("Dark mode has been enabled", "success");
@@ -27,26 +28,42 @@ function App() {
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
-      showalert(" mode has been enabled", "success");
+      showalert(" Light mode has been enabled", "success");
     }
   };
   return (
     <>
-      <Navbar
-        title="TextUtils"
-        aboutText="About us"
-        mode={mode}
-        toggleMode={toggleMode}
-      />
-      <Alert alert={alert} />
-      <div className="container my-3">
-        {/* <About /> */}
-        <TextForm
-          heading="Enter the text to analyse below"
+      <Router>
+        <Navbar
+          title="TextUtils"
+          aboutText="About us"
           mode={mode}
-          showalert={showalert}
+          toggleMode={toggleMode}
         />
-      </div>
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Routes>
+            <Route exact path="/about" element={<About />}></Route>
+            <Route
+              exact
+              path="/"
+              element={
+                <TextForm
+                  heading="Enter the text to analyse below"
+                  mode={mode}
+                  showalert={showalert}
+                />
+              }
+            >
+              {/* <TextForm
+                heading="Enter the text to analyse below"
+                mode={mode}
+                showalert={showalert}
+              /> */}
+            </Route>
+          </Routes>
+        </div>
+      </Router>
 
       {/* <Navbar /> */}
     </>
