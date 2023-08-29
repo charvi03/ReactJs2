@@ -20,6 +20,10 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#151B54";
       showalert("Dark mode has been enabled", "success");
+      document.title = "Text Utils - Dark mode";
+      // setInterval(() => {
+      //   document.title = "Text Utils - Dark mode";
+      // }, 2000);
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
