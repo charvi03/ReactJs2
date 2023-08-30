@@ -22,10 +22,8 @@ export default function TextForm(props) {
     props.showalert("screen cleared", "success");
   };
   const handleCopy = () => {
-    var text = document.getElementById("myBox");
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(text);
+    // document.getSelection().removeAllRanges();
     props.showalert("Copied successfully", "success");
   };
   const handleExtraSpaces = () => {
@@ -101,7 +99,7 @@ export default function TextForm(props) {
         <h1>Your text summary</h1>
         <p>
           {
-            text.split(" ").filter((element) => {
+            text.split(/\s+/).filter((element) => {
               return element.length !== 0;
             }).length
           }{" "}
